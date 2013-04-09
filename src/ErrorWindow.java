@@ -1,11 +1,13 @@
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 
 public class ErrorWindow extends JFrame implements ActionListener{
@@ -22,9 +24,11 @@ public class ErrorWindow extends JFrame implements ActionListener{
 		add(errorStatement, BorderLayout.CENTER);
 		
 		// creates a button to be pressed to dismiss window
+		JPanel submitButton = new JPanel(new FlowLayout());
 		JButton closeWindow = new JButton("OK");
 		closeWindow.addActionListener(this);
-		add(closeWindow, BorderLayout.SOUTH);
+		submitButton.add(closeWindow);
+		add(submitButton, BorderLayout.SOUTH);
 	}
 
 	public void actionPerformed(ActionEvent e) {
