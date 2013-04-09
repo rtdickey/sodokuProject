@@ -29,7 +29,7 @@ public class GridLayoutPage extends JFrame implements ActionListener, DocumentLi
 	private JLabel timeClock = null;
 	private JLabel moveCounter = null;
 	private JLabel levelView = null;
-	private JTextField input, input11;
+	private JTextField[] input = new JTextField[81];
 	Font inputFont = new Font("Arial", Font.BOLD, 30);
 	//private JComponent textArray[] = new JComponent[81];
 	Timer time = new Timer(delay, new ActionListener() {   // added javax.swing.Timer to count by time delays(1000 milliseconds or 1 second)
@@ -79,27 +79,34 @@ public class GridLayoutPage extends JFrame implements ActionListener, DocumentLi
 		gridPanel.setLayout(new GridLayout(x, y));
 		
 		// used as a test input
-		input11 = new JTextField(1);
-		input11.setFont(inputFont);
-		input11.setHorizontalAlignment(JTextField.CENTER);
-		input11.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		input11.addActionListener(this);
-		gridPanel.add(input11);
-		
-		
-		for (int i = 1; i < (9*9); i++){
-			input = new JTextField(1);
-			input.setFont(inputFont);
-			input.setHorizontalAlignment(JTextField.CENTER);
-			if (i % 3 == 0){
-				input.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-			}
-			else{
-				input.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-			}
+		// used as a test input
+		for (int i = 0; i < (9*9); i++){
+			input[i] = new JTextField(1);
+			input[i].setFont(inputFont);
+			input[i].setHorizontalAlignment(JTextField.CENTER);
 			
-			input.addActionListener(this);
-			gridPanel.add(input);
+			if (i == 2 || i == 11 || i == 29 || i == 38 || i == 56 || i == 65 || i == 74)
+			{                                                     //top left bottom right color
+				input[i].setBorder(BorderFactory.createMatteBorder(1, 1, 1, 5, Color.black));
+			}
+			else if (i == 5 || i == 14  || i == 32 || i == 41 || i == 59 || i == 68 || i == 77)
+			{
+				input[i].setBorder(BorderFactory.createMatteBorder(1, 1, 1, 5, Color.black));
+			}
+			else if (i == 20 || i == 47 || i == 23 || i == 50)
+			{
+				input[i].setBorder(BorderFactory.createMatteBorder(1, 1, 5, 5, Color.black));
+			}
+			else if ((i >= 18 && i <= 26) || (i >= 45 && i <= 53))
+			{
+				input[i].setBorder(BorderFactory.createMatteBorder(1, 1, 5, 1, Color.black));
+			}
+			else
+			{
+				input[i].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			}
+			input[i].addActionListener(this);
+			gridPanel.add(input[i]);
 		}
 		
 		add(gridPanel, BorderLayout.CENTER);
@@ -183,7 +190,7 @@ public class GridLayoutPage extends JFrame implements ActionListener, DocumentLi
 	}
 
 	public void checkCorrectFormat(ActionEvent e) {
-		String inputCheck = input11.getText();
+		/*//String inputCheck = input11.getText();
 		try{
 			int number = Integer.parseInt(inputCheck);
 		}
@@ -191,8 +198,8 @@ public class GridLayoutPage extends JFrame implements ActionListener, DocumentLi
 			ErrorWindow ew = new ErrorWindow();
 			ew.setVisible(true);
 			System.out.println("Error");
-			input11.setText("");
-		}
+			//input.setText("");
+		}*/
 	}
 	
 	public void timeUpdate()
