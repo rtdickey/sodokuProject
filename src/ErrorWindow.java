@@ -1,6 +1,8 @@
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,8 +16,14 @@ public class ErrorWindow extends JFrame implements ActionListener{
 	ErrorWindow(){
 		//test
 		super();
+		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int sWidth = (((int)screenSize.getWidth()/2) - 300/2);
+		int sHeight = (((int)screenSize.getHeight()/2) - 150/2);
+		
 		setSize(300, 150);
 		setTitle("Team Uhhhh");
+		setLocation(sWidth, sHeight);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		// creates a new Border Layout 

@@ -1,9 +1,11 @@
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -39,8 +41,14 @@ public class GridLayoutPage extends JFrame implements ActionListener, DocumentLi
 
 	public GridLayoutPage(int x, int y, String level) {
 		super();
+		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int sWidth = (((int)screenSize.getWidth()/2) - WIDTHGRID/2);
+		int sHeight = (((int)screenSize.getHeight()/2) - HEIGHTGRID/2);
+		
 		setSize(WIDTHGRID, HEIGHTGRID);
 		setTitle("Team Uhhhh");
+		setLocation(sWidth, sHeight);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		setLayout(new BorderLayout()); // sets the base layout to Border Layout to add multiple frames

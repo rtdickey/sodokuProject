@@ -1,6 +1,8 @@
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,8 +17,14 @@ public class SettingsLayoutPage extends JFrame implements ActionListener{
 
 	public SettingsLayoutPage() {
 		super();
+		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int sWidth = (((int)screenSize.getWidth()/2) - WIDTHSETTINGS/2);
+		int sHeight = (((int)screenSize.getHeight()/2) - HEIGHTSETTINGS/2);
+		
 		setSize(WIDTHSETTINGS, HEIGHTSETTINGS);
 		setTitle("Team Uhhhh");
+		setLocation(sWidth, sHeight);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
 		

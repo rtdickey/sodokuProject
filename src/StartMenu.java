@@ -1,8 +1,10 @@
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,8 +25,14 @@ public class StartMenu extends JFrame implements ActionListener{
 	public StartMenu(){
 		
 		super();
+		
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int sWidth = (((int)screenSize.getWidth()/2) - WIDTHSTART/2);
+		int sHeight = (((int)screenSize.getHeight()/2) - HEIGHTSTART/2);
+		
 		setSize(WIDTHSTART, HEIGHTSTART);
 		setTitle("Team Uhhhh");
+		setLocation(sWidth, sHeight);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		setLayout(new BorderLayout()); // creates a "bottom" Border Layout
