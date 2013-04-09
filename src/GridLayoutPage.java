@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -27,7 +28,11 @@ public class GridLayoutPage extends JFrame implements ActionListener, DocumentLi
 	private JTextField input, input11;
 	Font inputFont = new Font("Arial", Font.BOLD, 30);
 	//private JComponent textArray[] = new JComponent[81];
-	
+	Timer time = new Timer(delay, new ActionListener() {   // added javax.swing.Timer to count by time delays(1000 milliseconds or 1 second)
+        public void actionPerformed(ActionEvent e) {
+            timeUpdate();
+        }
+     });
 	
 
 	public GridLayoutPage(int x, int y, String level) {
@@ -83,8 +88,10 @@ public class GridLayoutPage extends JFrame implements ActionListener, DocumentLi
 		
 		add(gridPanel, BorderLayout.CENTER);
 		gridPanel.setVisible(true);
-
+		time.start();
 	}
+	
+	
 	
 	public void actionPerformed(ActionEvent e) {
 		
@@ -93,7 +100,9 @@ public class GridLayoutPage extends JFrame implements ActionListener, DocumentLi
 	//	gridPanel.add(input);
 		//gridPanel.setVisible(true);
 		
+		
 	}
+	
 	public void actionPerformed(ActionEvent e, JTextField jtf) {
 		
 		moveCounter.setText("Total Moves: " + ++counterPress);
@@ -134,12 +143,15 @@ public class GridLayoutPage extends JFrame implements ActionListener, DocumentLi
 		catch(NumberFormatException nfe){
 			ErrorWindow ew = new ErrorWindow();
 			ew.setVisible(true);
-			
 			System.out.println("Error");
 			input11.setText("");
-			
 		}
-		
+	}
+	
+	public void timeUpdate()
+	{
+		timeClock.setText("Time: " + ++timeCount);
 	}
 }
+
 
