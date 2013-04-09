@@ -1,12 +1,14 @@
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -81,12 +83,32 @@ public class GridLayoutPage extends JFrame implements ActionListener, DocumentLi
 			input = new JTextField(1);
 			input.setFont(inputFont);
 			input.setHorizontalAlignment(JTextField.CENTER);
-			input.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			if (i % 3 == 0){
+				input.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			}
+			else{
+				input.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+			}
+			
 			input.addActionListener(this);
 			gridPanel.add(input);
 		}
 		
 		add(gridPanel, BorderLayout.CENTER);
+		
+		JPanel bottomPanel = new JPanel();
+		bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 5));
+		
+		JButton submitButton = new JButton("Submit");
+		submitButton.addActionListener(this);
+		bottomPanel.add(submitButton);
+		
+		JButton exitButton = new JButton("Quit to Home");
+		exitButton.addActionListener(this);
+		bottomPanel.add(exitButton);
+		
+		add(bottomPanel, BorderLayout.SOUTH);
+		
 		gridPanel.setVisible(true);
 		time.start();
 	}
@@ -95,8 +117,25 @@ public class GridLayoutPage extends JFrame implements ActionListener, DocumentLi
 	
 	public void actionPerformed(ActionEvent e) {
 		
-		moveCounter.setText("Total Moves: " + ++counterPress);
-		checkCorrectFormat(e);
+		StartMenu newStart = null;
+		String action = e.getActionCommand();
+		
+		if(action.equals("Submit")){
+			--counterPress;
+			dispose();
+			newStart = new StartMenu();
+			newStart.setVisible(true);
+		}
+		else if(action.equals("Quit to Home")){
+			--counterPress;
+			dispose();
+			newStart = new StartMenu();
+			newStart.setVisible(true);
+		}
+		else{
+			moveCounter.setText("Total Moves: " + ++counterPress);
+			checkCorrectFormat(e);
+		}
 	//	gridPanel.add(input);
 		//gridPanel.setVisible(true);
 		
