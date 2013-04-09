@@ -20,7 +20,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 
-public class GridLayoutPage extends JFrame implements ActionListener, DocumentListener{
+public class GridLayoutPage extends JFrame implements ActionListener{
 	
 	public static final int WIDTHGRID = 500;
 	public static final int HEIGHTGRID = 500;
@@ -128,78 +128,47 @@ public class GridLayoutPage extends JFrame implements ActionListener, DocumentLi
 		time.start();
 	}
 	
-	
-	
 	public void actionPerformed(ActionEvent e) {
-		
-		StartMenu newStart = null;
-		String action = e.getActionCommand();
-		
-		if(action.equals("Submit")){
-			--counterPress;
+		String buttonCheck = e.getActionCommand();
+		if (buttonCheck.equals("Submit")){
 			dispose();
-			newStart = new StartMenu();
+			StartMenu newStart = new StartMenu();
 			newStart.setVisible(true);
 		}
-		else if(action.equals("Quit to Home")){
-			--counterPress;
+		else if (buttonCheck.equals("Quit to Home")){
 			dispose();
-			newStart = new StartMenu();
+			StartMenu newStart = new StartMenu();
 			newStart.setVisible(true);
 		}
-		else{
-			moveCounter.setText("Total Moves: " + ++counterPress);
-			checkCorrectFormat(e);
-		}
+		moveCounter.setText("Total Moves: " + ++counterPress); 
+		checkCorrectFormat(e);
 	//	gridPanel.add(input);
 		//gridPanel.setVisible(true);
 		
-		
-	}
-	
-	public void actionPerformed(ActionEvent e, JTextField jtf) {
-		
-		moveCounter.setText("Total Moves: " + ++counterPress);
-		//input11.setText("");
-	//	gridPanel.add(input);
-		//gridPanel.setVisible(true);
-		
-	}
-
-	public void changedUpdate(DocumentEvent e) {
-		//actionPerformed(this);
-		//moveCounter.setText("Total Moves: " + ++counterPress);
-		//checkCorrectFormat(e);
-		//input.setText("");
-		
-	}
-
-	public void insertUpdate(DocumentEvent e) {
-		//actionPerformed(this);
-		//moveCounter.setText("Total Moves: " + ++counterPress);
-		//input.setText("");
-		//checkCorrectFormat(e);
-		
-		
-	}
-
-	public void removeUpdate(DocumentEvent e) {
-		//input = "":
-		//moveCounter.setText("Total Moves: " + ++counterPress);
 		
 	}
 
 	public void checkCorrectFormat(ActionEvent e) {
-		/*//String inputCheck = input11.getText();
-		try{
-			int number = Integer.parseInt(inputCheck);
+		
+		for (int i = 0; i<(9*9); i++)
+		{
+				String inputCheck = input[i].getText();
+				{
+					if (!inputCheck.equals(""))
+					{
+						try{
+							int number = Integer.parseInt(inputCheck);
+						}
+						catch(NumberFormatException nfe)
+						{
+							ErrorWindow ew = new ErrorWindow();
+							ew.setVisible(true);
+							System.out.println("Error");
+							input[i].setText("");
+						}
+					}
+				}
 		}
-		catch(NumberFormatException nfe){
-			ErrorWindow ew = new ErrorWindow();
-			ew.setVisible(true);
-			System.out.println("Error");
-			//input.setText("");
-		}*/
 	}
 	
 	public void timeUpdate()
